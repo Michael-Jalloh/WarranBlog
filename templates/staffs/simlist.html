@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{% if title %}
+	<tittle>{{ title }}</title>
+	{% else %}
+	<title>Staffs</title>
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	<hr />
+	{% if staffs %}
+	{% for staff in staffs %}
+	<div class="well well-lg">
+		<h4><a href="{{ url_for('staff.info', id=staff.id) }}"> {{ staff.name }}</a></h4>
+		<p>{{ staff.html_content| truncate(100) }}</p>
+	</div>
+	<hr/>
+	{% endfor %}
+  {% else %}
+	<p><h3>!!!</h3></p>
+	<p><h3>No Staff have been added<h3></p>
+  {% endif %}
+{% endblock %}
+PLEASE
+{% block pager %}
+<ul class="pager">
+	{% if page >1 %}
+	<li><a href="{{ url_for('posts.page', page=page-1)}}"><h3><<<</h3></a></li>
+	{% else %}
+	<li><a><h3><<<</h3></a></li>
+	{% endif %}
+	{% if page < max_page %}
+	<li><a href="{{ url_for('posts.page', page=page+1) }}"><h3>>>></h3></a></li>
+	{% else %}
+	<li><a><h3>>>></h3></a></li>
+	{% endif %}
+</ul>
+{% endblock %}

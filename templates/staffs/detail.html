@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% import "_forms_admin.html"as forms %}
+
+{% block title %}
+{% if create %}
+	<title>Add new Staff</title>
+{% else %}
+	<title>Edit a Staff</title>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+  <h2>
+	{% if create%}
+	Add a new Staff
+	{% else %}
+	Edit a Staff
+	{% endif %}
+  </h2>
+
+
+<form action="?{{ request.query_string }}" method="post">
+	{{ forms.render(form) }}
+	<div class="actions">
+	  <input type="submit" class="btn btn-primary" value="save">
+	  <a href="{{ url_for('staff.index') }}" class="btn btn-default">Cancel</a>
+	</div>
+</form>
+{% endblock %}

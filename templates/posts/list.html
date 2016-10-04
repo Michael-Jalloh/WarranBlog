@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{% if title %}
+	<tittle>{{ title }}</title>
+	{% else %}
+	<title>Projects</title>
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	<hr />
+	{% if posts %}
+	{% for post in posts %}
+	<div class="well well-lg">
+		<h4><a href="{{ url_for('posts.detail', slug=post.slug) }}"> {{ post.title }}</a></h4>
+		<p>{{ post.html_content| truncate(500) }}</p>
+		<p>
+			{{ post.timestamp.strftime('%H:%M %Y-%m-%d') }} |
+			
+		</p></div><hr/>
+	{% endfor %}
+  {% else %}
+	<p><h3> Sorry!</h3></p>
+	<p><h3>No Post have been published yet<h3></p>
+  {% endif %}
+{% endblock %}
+{%- block pager -%}
+<ul class="pager">
+	{% if page >1 %}
+	<li><a href="{{ url_for('posts.page', page=page-1)}}"><h4><<<</h4></a></li>
+	{% else %}
+	<li><a><h4><<<</h4></a></li>
+	{% endif %}
+	{% if page < max_page %}
+	<li><a href="{{ url_for('posts.page', page=page+1) }}"><h4>>>></h4></a></li>
+	{% else %}
+	<li><a><h4>>>></h4></a></li>
+	{% endif %}
+</ul>
+{%- endblock -%}

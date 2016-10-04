@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block page_header %}
+	<div class="page-header">
+		<h2> {{ staff.name }}</h2>
+		{% if current_user.is_authenticated %}
+<a href="{{ url_for('staff.edit', id = staff.id) }}"><h3><span class="label label-primary">Edit</span></h3></a>
+{% endif %}
+	</div>
+{% endblock %}
+{% block content %}
+    <div class="well well-lg">
+	<p>
+	   <img src="{{staff.avatar(150) }}"><br>
+	    <span class="label label-primary">Name</span> {{ staff.name}}</p>
+	<p><span class="label label-primary">Email</span> {{ staff.email }}</p>
+	<p><span class="label label-secondary">Position</span> {{ staff.position }}</p>
+	<p><span class="label label-primary">Bio</span><br>
+		{{ staff.html_content }}</p>
+    </div>
+{% endblock %}
+

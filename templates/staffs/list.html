@@ -1,0 +1,46 @@
+{%- extends "base.html" -%}
+
+
+{% block title %}
+	<title>Staffs</title>
+{% endblock %}
+
+
+{% block content %}
+  <table class="table table-bordered table-striped">
+     <thead>
+	<th>Title</th>
+	<th>Actions</th>
+     </thead>
+     <tbody>
+	{% if staffs %}
+	{% for staff in staffs %}
+	<tr>
+	   <th><a href="{{ url_for('staff.edit', id=staff.id) }}">{{ staff.name }}</a></th>
+	   <td><a href="{{ url_for('staff.edit', id=staff.id) }}" class="btn btn-primary">Edit</a>
+	   <a href="{{ url_for('staff.delete', id=staff.id) }}" class="btn btn-default">Delete</a>
+	   <a href="{{ url_for('staff.info', id=staff.id) }}" class="btn btn-default">View</a></td>
+	</tr>
+	{% endfor %}
+	{% else %}
+		<p>You haven't written any post yet...</p>
+	{% endif %}
+	</tbody>
+   </table>
+	<hr>
+	<a href="{{ url_for('staff.create') }}" class="btn btn-primary">Create</a>
+{% endblock %}
+{%- block pager -%}
+<ul class="pager">
+	{% if page >1 %}
+	<li><a href="{{ url_for('posts.page', page=page-1)}}"><h4><<<</h4></a></li>
+	{% else %}
+	<li><a><h4><<<</h4></a></li>
+	{% endif %}
+	{% if page < max_page %}
+	<li><a href="{{ url_for('posts.page', page=page+1) }}"><h4>>>></h4></a></li>
+	{% else %}
+	<li><a><h4>>>></h4></a></li>
+	{% endif %}
+</ul>
+{%- endblock -%}

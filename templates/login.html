@@ -1,0 +1,23 @@
+{% extends "base.html" %} 
+{% import "_forms.html" as forms %}
+
+{% block title %}
+<title>Login</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+	<h1>Login</h1>
+</div>
+<div  class="col-md-a">
+
+<form action="?{{ request.query_string }}" method="post">
+	{{forms.render(form) }}
+	<div class="action">
+	  <input type="submit" class="btn btn-primary" value="Login">
+	</div>
+</form>
+</div>
+{% endblock %}
+ 
