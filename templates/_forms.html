@@ -7,19 +7,13 @@
 	<div class="clearfix {% if field.errors %}error{% endif %}">
 		<h1>{{ field.label }}</h1>
 		<div class="input">
-<<<<<<< HEAD
+
 		  {% if field.name == "content" %}
 			{{ field(rows=75, cols=75) }}
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
+
 		  {% if field.name == "post" %}
 			{{ field(rows=20, cols=200) }}
->>>>>>> 9c89eebfac1e900733fd3195485f5402fef2503d
->>>>>>> 914c858a1149a0bf22044933e5ac457edf1b7114
->>>>>>> 63a4a7ef4c678480e39ccbbecb6dbb6e5bb8137c
+
 		  {% else %}
 			{{ field() }}
 	       	 {% endif %}
